@@ -103,12 +103,13 @@ class GetUsers(viewsets.ReadOnlyModelViewSet):
 
 
 from django.contrib.sites.shortcuts import get_current_site
+
 class Todo(APIView):
     name = 'Signup or Login para ingresar a la Tienda'
 
     def get(self, request):
         throttle_classes=[UserRateThrottle]
-        principal="127.0.0.1:8000"
+        principal="proyecto-unidad-5-production.up.railway.app"
         url_signup = reverse('signup')
         url_login = reverse('login')
 
@@ -133,3 +134,9 @@ def my_view(request):
     print(site_address)
     # Usar la dirección del sitio para construir la URL completa de la vista
     full_url = f"http://{site_address}"
+
+
+class MyView(APIView):
+    def post(self, request, *args, **kwargs):
+        browser_url = request.data['browser_url']
+        # Ahora puedes usar la variable browser_url para obtener la URL del navegador

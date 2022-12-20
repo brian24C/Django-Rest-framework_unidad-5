@@ -19,6 +19,7 @@ urlpatterns=[
     path("jwt/regresh/", TokenRefreshView.as_view(), name="token_refresh"),
     path("jwt/verify/", TokenVerifyView.as_view(), name="token_verify"),
     path("", api.Todo.as_view(), name="todo"),
+    path("probar", api.MyView.as_view(), name="MyView")
 
 ]
 
