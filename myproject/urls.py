@@ -22,6 +22,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include("users.router")),
     #path('api/users/login/servicios/', include("servicios.urls") ,name='mi_vista_servicios' ),
-    path('login/tienda/', include("servicios.urls") ,name='mi_vista_servicios' ),
+    path('login/versionamiento/', include("servicios.urls") ,name='mi_vista_servicios' ),
     path('login/streaming/', include("streamingPagos.urls") ,name='streamingPagos' ),
 ]

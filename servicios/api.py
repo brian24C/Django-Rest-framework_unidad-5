@@ -89,8 +89,8 @@ class Todo(APIView):
         url_v1 = '/v1/'
         url_v2 = '/v2/'
 
-        url_completa_v1=f"http://{principal}/login{url_v1}"
-        url_completa_v2=f"http://{principal}/login{url_v2}"
+        url_completa_v1=f"http://{principal}/login/versionamiento{url_v1}"
+        url_completa_v2=f"http://{principal}/login/versionamiento{url_v2}"
 
         return Response({
             "Version 1": url_completa_v1,

@@ -83,7 +83,7 @@ class LoginView(APIView):
             #return HttpResponseRedirect(reverse('PaymentViewSet', kwargs={'app_name': 'servicios'}))
             #return redirect(PaymentViewSet.as_view({'get': 'list', 'post': 'create'}))
 
-            return redirect('tienda/')       #FUNCIONA
+            return redirect('versionamiento/')       #FUNCIONA
 
         else:
             return Response(data={"message": "correo inválido o contraseña incorrecta"})
