@@ -15,8 +15,6 @@ class ServicioViewSet(viewsets.ReadOnlyModelViewSet): #Solo para list y retrieve
     search_fields = ['name']
     ordering = ('-id')
 
-    throttle_classes=[UserRateThrottle]
-
 
 
 class PaymentViewSet(viewsets.ModelViewSet):
