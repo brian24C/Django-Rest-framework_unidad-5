@@ -1,4 +1,4 @@
-from .models import Servicio, Payment_user, Expired_payments
+from servicios.models import Servicio, Payment_user, Expired_payments
 from rest_framework import viewsets, filters
 from .serializers import ServicioSerializer, PaymentSerializer, ExpiredSerializer
 from rest_framework import status, generics
@@ -6,7 +6,6 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from datetime import datetime
 from rest_framework.throttling import AnonRateThrottle, UserRateThrottle
-from django.urls import reverse
 
 class ServicioViewSet(viewsets.ReadOnlyModelViewSet): #Solo para list y retrieve
     queryset = Servicio.objects.all()
@@ -77,22 +76,3 @@ class ExpiredView(APIView):
             "ok": False,
             "message": serializer.errors
         }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-
-
-
-class Todo(APIView):
-    name = 'VERSIONAMIENTO , V1 y V2 De app servicios'
-
-    def get(self, request):
-        throttle_classes=[UserRateThrottle]
-        principal="proyecto-unidad-5-production.up.railway.app"
-        url_v1 = '/v1/'
-        url_v2 = '/v2/'
-
-        url_completa_v1=f"http://{principal}/login{url_v1}"
-        url_completa_v2=f"http://{principal}/login{url_v2}"
-
-        return Response({
-            "Version 1": url_completa_v1,
-            "Version 2": url_completa_v2,
-        })

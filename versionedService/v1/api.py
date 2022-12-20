@@ -1,4 +1,4 @@
-from .models import Pagos
+from streamingPagos.models import Pagos
 from rest_framework import viewsets
 from .serializers import PagoSerializer
 from rest_framework.permissions import IsAuthenticated

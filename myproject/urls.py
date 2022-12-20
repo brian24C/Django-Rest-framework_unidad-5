@@ -24,5 +24,4 @@ urlpatterns = [
     #path('api/users/login/servicios/', include("servicios.urls") ,name='mi_vista_servicios' ),
     path('login/tienda/', include("servicios.urls") ,name='mi_vista_servicios' ),
     path('login/streaming/', include("streamingPagos.urls") ,name='streamingPagos' ),
-    path('login/general', include("streamingPagos.urls") ,name='streamingPagos' )
 ]
