@@ -88,7 +88,7 @@ class GetUsers(viewsets.ReadOnlyModelViewSet):
 
 
 class Todo(APIView):
-    name = 'Signup or Login para ingresar a la Tienda'
+    name = 'Signup or Login para acceder'
 
     def get(self, request):
         throttle_classes=[UserRateThrottle]
