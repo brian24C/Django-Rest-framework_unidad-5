@@ -151,7 +151,8 @@ REST_FRAMEWORK = {
 
     'DEFAULT_THROTTLE_RATES': {
         'pagos': '1000/day',
-
+        "expired": '2000/day',
+        "servicio": '2000/day',
     },
 
 }

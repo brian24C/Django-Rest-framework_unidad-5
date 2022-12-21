@@ -7,15 +7,15 @@ from rest_framework.views import APIView
 from datetime import datetime
 from rest_framework.throttling import AnonRateThrottle, UserRateThrottle
 
-class ServicioViewSet(viewsets.ReadOnlyModelViewSet): #Solo para list y retrieve
+class ServicioViewSet(viewsets.ModelViewSet): 
     queryset = Servicio.objects.all()
     serializer_class = ServicioSerializer
     filter_backends = [filters.SearchFilter, filters.OrderingFilter]
 
     search_fields = ['name']
     ordering = ('-id')
-
-
+    http_method_names = ['get']
+    throttle_scope = 'servicio'
 
 class PaymentViewSet(viewsets.ModelViewSet):
     queryset = Payment_user.objects.all()
@@ -25,10 +25,10 @@ class PaymentViewSet(viewsets.ModelViewSet):
     search_fields = ['ExpirationDate','paymentDate']
     ordering = ('-id')
 
-
+    throttle_scope = 'pagos'
 
     def create(self, request, *args, **kwargs):
-
+        # llamo al método create del ModelViewSet
         creando=super().create(request, *args, **kwargs)  #Creo en la bbdd
 
         last = Payment_user.objects.order_by('-id').first()
@@ -38,41 +38,13 @@ class PaymentViewSet(viewsets.ModelViewSet):
             expired_payment = Expired_payments(pay_user_id=payment_user, penalty_fee_amount=100)
             expired_payment.save()
 
-        # llamo al método create del ModelViewSet
-        # para crear el pago usando la información proporcionada
+      
         return creando
         
-
-
 
 class ExpiredViewSet(viewsets.ModelViewSet): #Solo GET Y POST
     queryset = Expired_payments.objects.all()
     serializer_class = ExpiredSerializer
     http_method_names = ['get', 'post']
  
-
-class ExpiredView(APIView):
-    
-    def get(self, request):
-        expired = Expired_payments.objects.all()
-        serializer = ExpiredSerializer(expired, many=True)
-        return Response({
-            "ok": True,
-            "data": serializer.data
-        })
-
-    def post(self, request):
-        serializer = ExpiredSerializer(data=request.data)
-
-        if serializer.is_valid():
-            serializer.save()
-
-            return Response({
-                "ok": True,
-                "message": "Expired created"
-            }, status=status.HTTP_201_CREATED)
-
-        return Response({
-            "ok": False,
-            "message": serializer.errors
-        }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+    throttle_scope = 'expired'

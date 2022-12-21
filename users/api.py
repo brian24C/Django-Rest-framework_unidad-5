@@ -58,41 +58,25 @@ class LoginView(APIView):
     def post(self, request:Request):
         email=request.data.get('email')
         password=request.data.get('password')
-        print(email)
-        print(password)
+
         user = authenticate(request, email=email, password=password)
-        print(user)
+
         if user is not None:
-
-            id_usuario=User.objects.filter(email=email).values('id')[:1]
-
             #usuario=User.objects.filter(email=email)[0]    También funciona si pongo este
             usuario=User.objects.get(email=email)
-            print(usuario)
             tokens = create_jwt_pair_for_user(user)
+
             if tokens: 
-                
-                login(self.request, user)
-            resp={
-                    "message": "LOGEADO CORRECTAMENTE", 
-                    "email": email, 
-                    "tokens":tokens, 
-                    }
+                login(self.request, usuario)
+
+            return redirect('versionamiento/')      
             
-            #return Response(data=resp, status=status.HTTP_200_OK)
-            #return HttpResponseRedirect(reverse('PaymentViewSet', kwargs={'app_name': 'servicios'}))
-            #return redirect(PaymentViewSet.as_view({'get': 'list', 'post': 'create'}))
-
-            return redirect('versionamiento/')       #FUNCIONA
-
         else:
             return Response(data={"message": "correo inválido o contraseña incorrecta"})
 
     def get(self, request:Request):
 
-        content={"user": str(request.user), "auth": str(request.auth) , "formato para el campo Content" : {"email": "brian2@hotmail.com", "password": "1234"}}
-
-
+        content={"user": str(request.user), "auth": str(request.auth) , "formato para el campo Content" : {"email": "castro@hotmail.com", "password": "brianjosue"}}
         return Response(data=content, status=status.HTTP_200_OK)
 
         
@@ -102,7 +86,6 @@ class GetUsers(viewsets.ReadOnlyModelViewSet):
 
 
 
-from django.contrib.sites.shortcuts import get_current_site
 
 class Todo(APIView):
     name = 'Signup or Login para ingresar a la Tienda'
@@ -115,7 +98,7 @@ class Todo(APIView):
 
         url_crear=f"http://{principal}{url_signup}"
         url_entrar=f"http://{principal}{url_login}"
-        print(my_view(request))
+        
         return Response({
 
             "CREAR CUENTA": url_crear,
@@ -123,18 +106,6 @@ class Todo(APIView):
         })
 
    
-
-
-
-def my_view(request):
-    # Obtener el objeto Site actual
-    site = get_current_site(request)
-    # Obtener la dirección del sitio
-    site_address = site.domain
-    print(site_address)
-    # Usar la dirección del sitio para construir la URL completa de la vista
-    full_url = f"http://{site_address}"
-
 
 class MyView(APIView):
     def post(self, request, *args, **kwargs):

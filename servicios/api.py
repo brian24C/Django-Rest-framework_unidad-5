@@ -52,39 +52,15 @@ class ExpiredViewSet(viewsets.ModelViewSet): #Solo GET Y POST
     http_method_names = ['get', 'post']
  
 
-class ExpiredView(APIView):
+
+
+
+from django.db import connection
+class Todo(APIView):
+    name = 'BIENVENIDO!  Puedes acceder a la V1 y V2 de app servicios'
     
     def get(self, request):
-        expired = Expired_payments.objects.all()
-        serializer = ExpiredSerializer(expired, many=True)
-        return Response({
-            "ok": True,
-            "data": serializer.data
-        })
 
-    def post(self, request):
-        serializer = ExpiredSerializer(data=request.data)
-
-        if serializer.is_valid():
-            serializer.save()
-
-            return Response({
-                "ok": True,
-                "message": "Expired created"
-            }, status=status.HTTP_201_CREATED)
-
-        return Response({
-            "ok": False,
-            "message": serializer.errors
-        }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-
-
-
-class Todo(APIView):
-    name = 'VERSIONAMIENTO , V1 y V2 De app servicios'
-
-    def get(self, request):
-        throttle_classes=[UserRateThrottle]
         principal="proyecto-unidad-5-production.up.railway.app"
         url_v1 = '/v1/'
         url_v2 = '/v2/'
