@@ -10,7 +10,7 @@ formatted_date = now.strftime("%Y-%m-%dT%H:%M")
 class Servicio(models.Model):
     name=models.CharField(max_length=500)
     descripcion=models.CharField(max_length=500)
-    Logo=models.CharField(max_length=500)
+    Logo=models.ImageField(upload_to="images")
 
     class Meta:
         db_table = 'servicios'

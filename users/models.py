@@ -27,6 +27,7 @@ class CustomUserManager(BaseUserManager):
 
 
 class User(AbstractUser):
+    
     email= models.CharField(max_length=80, unique=True, default="no@email.com")
     username= models.CharField(max_length=45)
     date_of_birth= models.DateField(null=True)

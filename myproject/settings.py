@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
     "rest_framework",
     "rest_framework_simplejwt",
     "rest_framework.authtoken",
@@ -52,6 +53,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -162,3 +164,10 @@ REST_FRAMEWORK = {
 AUTH_USER_MODEL="users.User"  #-------------------MODIFICADO---------------------------------------
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+
+MEDIA_URL= "/media/"
+MEDIA_ROOT=os.path.join(BASE_DIR, 'media')
+
+
+CORS_ORIGIN_ALLOW_ALL = True
