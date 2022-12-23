@@ -49,6 +49,9 @@ INSTALLED_APPS = [
     "streamingPagos",
 ]
 SITE_ID = 1
+
+CSRF_TRUSTED_ORIGINS = ['https://proyecto-unidad-5-production.up.railway.app']
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     "whitenoise.middleware.WhiteNoiseMiddleware",
