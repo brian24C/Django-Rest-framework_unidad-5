@@ -6,6 +6,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from datetime import datetime
 from rest_framework.throttling import AnonRateThrottle, UserRateThrottle
+from rest_framework.permissions import IsAuthenticated
 
 class ServicioViewSet(viewsets.ModelViewSet): 
     queryset = Servicio.objects.all()
@@ -24,12 +25,21 @@ class PaymentViewSet(viewsets.ModelViewSet):
 
     search_fields = ['ExpirationDate','paymentDate']
     ordering = ('-id')
+    permission_classes=[IsAuthenticated]
+    #authentication_classes=[BasicAuthentication]
 
+    
     throttle_scope = 'pagos'
 
     def create(self, request, *args, **kwargs):
         # llamo al método create del ModelViewSet
+
+        payment_data = request.data
+        #print(payment_data["csrfmiddlewaretoken"]) si pongo esto me sale error 
+        print(request.user)
+
         creando=super().create(request, *args, **kwargs)  #Creo en la bbdd
+
 
         last = Payment_user.objects.order_by('-id').first()
         payment_user=Payment_user.objects.get(id=last.id)

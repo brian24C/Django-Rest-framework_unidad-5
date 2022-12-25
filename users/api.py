@@ -95,7 +95,7 @@ class Todo(APIView):
         principal="proyecto-unidad-5-production.up.railway.app"
         url_signup = reverse('signup')
         url_login = reverse('login')
-
+        print(request.user)
         url_crear=f"http://{principal}{url_signup}"
         url_entrar=f"http://{principal}{url_login}"
         

@@ -8,8 +8,6 @@ from . import api
 
 router = routers.DefaultRouter()
 
-router.register("get", api.GetUsers)
-
 
 
 urlpatterns=[

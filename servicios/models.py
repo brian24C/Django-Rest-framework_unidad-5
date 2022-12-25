@@ -20,6 +20,7 @@ class Servicio(models.Model):
 
 
 class Payment_user(models.Model):
+
     id = models.AutoField(primary_key=True)
     user=models.ForeignKey(User, on_delete=models.CASCADE, related_name="user_id_payment")
     service = models.ForeignKey(Servicio, on_delete=models.CASCADE, related_name="service_id_payment")

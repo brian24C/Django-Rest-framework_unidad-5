@@ -24,6 +24,6 @@ urlpatterns = [
     path('', include("users.router")),
     #path('api/users/login/servicios/', include("servicios.urls") ,name='mi_vista_servicios' ),
     path('login/versionamiento/', include("servicios.urls") ,name='mi_vista_servicios' ),
-    path('login/streaming/', include("streamingPagos.urls") ,name='streamingPagos' ),
+    #path('login/streaming/', include("streamingPagos.urls") ,name='streamingPagos' ),
 ]
 urlpatterns+=static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

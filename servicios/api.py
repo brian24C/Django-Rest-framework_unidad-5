@@ -7,6 +7,9 @@ from rest_framework.views import APIView
 from datetime import datetime
 from rest_framework.throttling import AnonRateThrottle, UserRateThrottle
 from django.urls import reverse
+from django.contrib.auth import authenticate, login
+import json
+
 
 class ServicioViewSet(viewsets.ReadOnlyModelViewSet): #Solo para list y retrieve
     queryset = Servicio.objects.all()
@@ -28,9 +31,11 @@ class PaymentViewSet(viewsets.ModelViewSet):
 
 
 
-    def create(self, request, *args, **kwargs):
+    def post(self, request, *args, **kwargs):
+    
 
         creando=super().create(request, *args, **kwargs)  #Creo en la bbdd
+
 
         last = Payment_user.objects.order_by('-id').first()
         payment_user=Payment_user.objects.get(id=last.id)
@@ -42,8 +47,7 @@ class PaymentViewSet(viewsets.ModelViewSet):
         # llamo al método create del ModelViewSet
         # para crear el pago usando la información proporcionada
         return creando
-        
-
+            
 
 
 class ExpiredViewSet(viewsets.ModelViewSet): #Solo GET Y POST
