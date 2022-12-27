@@ -29,7 +29,7 @@ class Payment_user(models.Model):
     ExpirationDate=models.DateTimeField()
 
     def __str__(self) -> str:
-        return f"payment_User: {self.user}"
+        return f"payment_User: {self.user.username}"
 
     class Meta:
         db_table = 'payment_user'

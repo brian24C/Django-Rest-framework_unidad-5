@@ -15,7 +15,7 @@ class ServicioViewSet(viewsets.ModelViewSet):
 
     search_fields = ['name']
     ordering = ('-id')
-    http_method_names = ['get']
+    #http_method_names = ['get']
     throttle_scope = 'servicio'
 
 class PaymentViewSet(viewsets.ModelViewSet):
@@ -25,7 +25,7 @@ class PaymentViewSet(viewsets.ModelViewSet):
 
     search_fields = ['ExpirationDate','paymentDate']
     ordering = ('-id')
-    permission_classes=[IsAuthenticated]
+    #permission_classes=[IsAuthenticated]
     #authentication_classes=[BasicAuthentication]
 
     
