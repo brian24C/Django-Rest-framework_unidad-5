@@ -65,11 +65,17 @@ class LoginView(APIView):
             #usuario=User.objects.filter(email=email)[0]    También funciona si pongo este
             usuario=User.objects.get(email=email)
             tokens = create_jwt_pair_for_user(user)
+           
+            diccionario = vars(usuario)
+            print(diccionario)
 
-            if tokens: 
-                login(self.request, usuario)
-
-            return redirect('versionamiento/')      
+            response = {
+                "message": "Logeado Exitoso",
+                "data": GetUserSerializer(user).data,
+                "tokens": tokens,
+            }     
+                
+            return Response(data=response, status=status.HTTP_200_OK)      
             
         else:
             return Response(data={"message": "correo inválido o contraseña incorrecta"})

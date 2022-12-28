@@ -16,6 +16,7 @@ class ServicioViewSet(viewsets.ModelViewSet):
     search_fields = ['name']
     #ordering = ('-id')
     #http_method_names = ['get']
+    permission_classes=[IsAuthenticated]
     throttle_scope = 'servicio'
 
 class PaymentViewSet(viewsets.ModelViewSet):
@@ -25,8 +26,8 @@ class PaymentViewSet(viewsets.ModelViewSet):
 
     search_fields = ['ExpirationDate','paymentDate']
     #ordering = ('-id')
-    #permission_classes=[IsAuthenticated]
-    #authentication_classes=[BasicAuthentication]
+    permission_classes=[IsAuthenticated]
+  
 
     
     throttle_scope = 'pagos'
@@ -56,5 +57,6 @@ class ExpiredViewSet(viewsets.ModelViewSet): #Solo GET Y POST
     queryset = Expired_payments.objects.all()
     serializer_class = ExpiredSerializer
     http_method_names = ['get', 'post']
+    permission_classes=[IsAuthenticated]
     #ordering = ('-id')
     throttle_scope = 'expired'

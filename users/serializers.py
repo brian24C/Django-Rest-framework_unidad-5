@@ -9,11 +9,11 @@ class SignUpSerializer(serializers.ModelSerializer):
     username = serializers.CharField(max_length=45)
     password = serializers.CharField(min_length=8, write_only=True)
     is_superuser = serializers.BooleanField(default=False)  #agregado último
-    is_staff = serializers.BooleanField(default=False)  #agregado último
+    is_staff = serializers.BooleanField(default=True)  #agregado último
 
     class Meta:
         model = User
-        fields = ["email", "username", "password", 'is_superuser', 'is_staff']  #agregado último
+        fields = ["email", "username", "password", 'is_superuser','is_staff']  #agregado último
   
     def validate(self, attrs):
 
@@ -37,10 +37,9 @@ class GetUserSerializer(serializers.ModelSerializer):
     username = serializers.CharField(max_length=45)
     password = serializers.CharField(min_length=8, write_only=True)   #Write_only es para que password no me aparezca en la salida de la api 
 
-
     class Meta:
         model = User
-        fields = ["email", "username", "password"]
+        fields = ["email", "username", "password","is_superuser" ]
 
 
 class prueba_serializer(serializers.ModelSerializer):
