@@ -65,7 +65,7 @@ class Todo(APIView):
     
     def get(self, request):
 
-        principal="proyecto-unidad-5-production.up.railway.app"
+        principal="web-production-1be5.up.railway.app"
         url_v1 = '/v1/'
         url_v2 = '/v2/'
 

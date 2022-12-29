@@ -107,7 +107,7 @@ class Todo(APIView):
 
     def get(self, request):
         throttle_classes=[UserRateThrottle]
-        principal="proyecto-unidad-5-production.up.railway.app"
+        principal="web-production-1be5.up.railway.app"
         url_signup = reverse('signup')
         url_login = reverse('login')
         print(request.user)
