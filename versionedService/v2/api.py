@@ -8,6 +8,8 @@ from datetime import datetime
 from rest_framework.throttling import AnonRateThrottle, UserRateThrottle
 from rest_framework.permissions import IsAuthenticated
 
+
+
 class ServicioViewSet(viewsets.ModelViewSet): 
     queryset = Servicio.objects.all()
     serializer_class = ServicioSerializer
@@ -19,7 +21,13 @@ class ServicioViewSet(viewsets.ModelViewSet):
     permission_classes=[IsAuthenticated]
     throttle_scope = 'servicio'
 
-class PaymentViewSet(viewsets.ModelViewSet):
+
+
+
+        
+
+class PaymentViewSet( viewsets.ModelViewSet):
+
     queryset = Payment_user.objects.all()
     serializer_class = PaymentSerializer
     filter_backends = [filters.SearchFilter, filters.OrderingFilter]
@@ -27,7 +35,7 @@ class PaymentViewSet(viewsets.ModelViewSet):
     search_fields = ['ExpirationDate','paymentDate']
     #ordering = ('-id')
     permission_classes=[IsAuthenticated]
-  
+
 
     
     throttle_scope = 'pagos'
@@ -41,7 +49,7 @@ class PaymentViewSet(viewsets.ModelViewSet):
 
         creando=super().create(request, *args, **kwargs)  #Creo en la bbdd
 
-
+        
         last = Payment_user.objects.order_by('-id').first()
         payment_user=Payment_user.objects.get(id=last.id)
 
@@ -60,3 +68,4 @@ class ExpiredViewSet(viewsets.ModelViewSet): #Solo GET Y POST
     permission_classes=[IsAuthenticated]
     #ordering = ('-id')
     throttle_scope = 'expired'
+

@@ -58,7 +58,7 @@ class LoginView(APIView):
     def post(self, request:Request):
         email=request.data.get('email')
         password=request.data.get('password')
-        print(password)
+      
         user = authenticate(request, email=email, password=password)
 
         if user is not None:
@@ -66,15 +66,24 @@ class LoginView(APIView):
             usuario=User.objects.get(email=email)
             tokens = create_jwt_pair_for_user(user)
            
-            diccionario = vars(usuario)
-            print(diccionario)
+         
+            data_user={
+                "email": usuario.email,
+                "username": usuario.username,
+                "is_superuser": usuario.is_superuser,
+                "id": usuario.id,
+            }
+      
+
 
             response = {
                 "message": "Logeado Exitoso",
-                "data": GetUserSerializer(user).data,
+                "data": data_user,
                 "tokens": tokens,
             }     
-                
+
+        
+            print(data_user)
             return Response(data=response, status=status.HTTP_200_OK)      
             
         else:
