@@ -87,7 +87,7 @@ class LoginView(APIView):
             return Response(data=response, status=status.HTTP_200_OK)      
             
         else:
-            return Response(data={"message": "correo inválido o contraseña incorrecta"})
+            return Response(data={"message": "correo inválido o contraseña incorrecta"}, status=400)
 
     def get(self, request:Request):
 
