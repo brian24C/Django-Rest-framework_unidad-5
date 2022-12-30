@@ -73,4 +73,4 @@ class ExpiredViewSet(viewsets.ModelViewSet): #Solo GET Y POST
 class PerfilViewset(viewsets.ModelViewSet):
     queryset = PerfilDeUsuario.objects.all()
     serializer_class = PerfilSerializer
-    
+    permission_classes=[IsAuthenticated]
