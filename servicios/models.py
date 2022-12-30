@@ -35,7 +35,6 @@ class Payment_user(models.Model):
         db_table = 'payment_user'
 
 class Expired_payments(models.Model):
-    
     pay_user_id=models.ForeignKey(Payment_user, on_delete=models.CASCADE, related_name="pay_id_Expired")
     penalty_fee_amount=models.IntegerField(default=100)
 
@@ -44,3 +43,12 @@ class Expired_payments(models.Model):
 
     def __str__(self) -> str:
         return f"Expired User: {self.pay_user_id.id}"
+
+
+class PerfilDeUsuario(models.Model):
+    id = models.AutoField(primary_key=True)
+    perfil=models.ImageField(upload_to="FotoPerfil")
+    user_id=models.ForeignKey(User, on_delete=models.CASCADE, related_name="user_id_perfil")
+
+    class Meta:
+        db_table = 'PerfilDeUsuario'

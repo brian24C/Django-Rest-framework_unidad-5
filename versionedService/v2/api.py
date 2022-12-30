@@ -1,6 +1,6 @@
-from servicios.models import Servicio, Payment_user, Expired_payments
+from servicios.models import Servicio, Payment_user, Expired_payments, PerfilDeUsuario
 from rest_framework import viewsets, filters
-from .serializers import ServicioSerializer, PaymentSerializer, ExpiredSerializer
+from .serializers import ServicioSerializer, PaymentSerializer, ExpiredSerializer, PerfilSerializer
 from rest_framework import status, generics
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -69,3 +69,8 @@ class ExpiredViewSet(viewsets.ModelViewSet): #Solo GET Y POST
     #ordering = ('-id')
     throttle_scope = 'expired'
 
+
+class PerfilViewset(viewsets.ModelViewSet):
+    queryset = PerfilDeUsuario.objects.all()
+    serializer_class = PerfilSerializer
+    

@@ -1,5 +1,5 @@
 from rest_framework import routers
-from .api import ServicioViewSet, PaymentViewSet,ExpiredViewSet
+from .api import ServicioViewSet, PaymentViewSet,ExpiredViewSet, PerfilViewset
 
 
 
@@ -10,6 +10,7 @@ router = routers.DefaultRouter()
 router.register('readService', ServicioViewSet, basename="service")
 router.register('payment', PaymentViewSet, basename="PaymentViewSet")
 router.register('expired', ExpiredViewSet, basename="ExpiredViewSet")
+router.register('perfil', PerfilViewset, basename="perfil")
 
 
 urlpatterns = [

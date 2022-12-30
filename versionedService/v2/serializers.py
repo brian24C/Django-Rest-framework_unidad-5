@@ -1,7 +1,7 @@
 
 from datetime import datetime
 from rest_framework import serializers
-from servicios.models import Servicio, Payment_user, Expired_payments
+from servicios.models import Servicio, Payment_user, Expired_payments, PerfilDeUsuario
 
 
 class ServicioSerializer(serializers.ModelSerializer):
@@ -30,4 +30,7 @@ class ExpiredSerializer(serializers.ModelSerializer):
 #---------------------------------------
 
 
-
+class PerfilSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=PerfilDeUsuario
+        fields= '__all__'
