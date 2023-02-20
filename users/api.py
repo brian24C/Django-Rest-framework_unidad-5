@@ -74,8 +74,6 @@ class LoginView(APIView):
                 "id": usuario.id,
             }
       
-
-
             response = {
                 "message": "Logeado Exitoso",
                 "data": data_user,
