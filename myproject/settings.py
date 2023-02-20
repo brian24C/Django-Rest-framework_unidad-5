@@ -50,7 +50,8 @@ INSTALLED_APPS = [
 ]
 SITE_ID = 1
 
-CSRF_TRUSTED_ORIGINS = ['https://web-production-1be5.up.railway.app']
+#CSRF_TRUSTED_ORIGINS = ['https://web-production-1be5.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['https://django-rest-framework-unidad-5.vercel.app']
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
