@@ -57,6 +57,7 @@ class LoginView(APIView):
 
     def post(self, request:Request):
         email=request.data.get('email')
+        email = email.strip()
         password=request.data.get('password')
       
         user = authenticate(request, email=email, password=password)
@@ -105,7 +106,7 @@ class Todo(APIView):
 
     def get(self, request):
         throttle_classes=[UserRateThrottle]
-        principal="web-production-1be5.up.railway.app"
+        principal="backend-api-de-servicios.up.railway.app"
         url_signup = reverse('signup')
         url_login = reverse('login')
         print(request.user)
